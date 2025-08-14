@@ -5,10 +5,10 @@ type VerifyPrompt struct {
 }
 
 type Response[T any] struct {
-	// 错误码
+	// error code
 	ErrCode int `json:"errCode"`
-	// 错误消息
+	// error Message
 	ErrMsg string `json:"errMsg"`
-	// 返回数据
+	// return data
 	Data T `json:"data,omitempty"`
 }
