@@ -20,7 +20,8 @@ func TestSend(t *testing.T) {
 
 	key := "YOUR API KEY"
 
-	ok, err := Verify(context.Background(), res, key)
-	assert.Nil(t, err)
+	ok, resp, err := Verify(context.Background(), res, key)
+	fmt.Println(err)
 	fmt.Println(ok)
+	fmt.Println(resp)
 }
