@@ -16,10 +16,10 @@ This package functions helps AI agent developers verify system prompts by our pl
 
 ### Usage
 
-Before your agent sends a request to an LLM, use the SDK to verify the system prompt and related parameters. The function returns `true` or `false` based on compliance.
+Before your agent sends a request to an LLM, use the SDK to verify the system prompt and related parameters.
 
 ```go
-pop.Verify(context.Background(), []byte(your system prompt), apiKey)
+pop.Verify(context.Background(), []byte(your system prompt), apiKey) (bool, VerifyResponse, error)
 ```
 
 **Parameters:**
@@ -31,6 +31,8 @@ pop.Verify(context.Background(), []byte(your system prompt), apiKey)
 **Returns:**
 
 - `bool`: `true` if the prompt and parameters are compliant, `false` otherwise.
+- `VerifyResponse`: verify proof
+- `error`: errors
 
 ### Example
 
@@ -43,7 +45,10 @@ import (
 func main() {
 		prompt := []byte("You are a helpful assistant.")
 		apiKey := "your-api-key"
-		ok := pop.Verify(context.Background(), prompt, apiKey)
+		ok, resp, err := pop.Verify(context.Background(), prompt, apiKey)
+		if err != nil {
+			// handle err
+		}
 		if ok {
 				// Safe to proceed
 		} else {
